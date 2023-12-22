@@ -25,13 +25,13 @@ api.add_namespace(admin_ns)
 api.add_namespace(store_ns)
 
 
-# @app.context_processor
-# def utility_processor():
-#     count = 0
-#     for item in session['cart']:
-#         count += item['quantity']
-#
-#     return dict(count=count)
+@app.context_processor
+def utility_processor():
+    count = 0
+    for item in session['cart']:
+        count += item['quantity']
+
+    return dict(count=count)
 
 
 if __name__ == '__main__':
