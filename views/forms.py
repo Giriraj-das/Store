@@ -1,4 +1,4 @@
-from flask_uploads import UploadSet, IMAGES
+from flask_uploads import IMAGES, UploadSet
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, IntegerField, TextAreaField, SelectField, HiddenField

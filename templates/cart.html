@@ -26,7 +26,7 @@
 						<br />
 						<p>
 							<button type="button" class="btn btn-danger btn-xs">
-								<a href="{{ url_for('remove_from_cart', ind=product.index) }}">
+								<a href="{{ url_for('store_remove_from_cart', ind=product.index) }}">
 									<i class="glyphicon glyphicon-trash"></i>
 								</a>
 							</button>
@@ -74,10 +74,10 @@
 				</li>
 			</ul>
 			<div class="panel-footer">
-				<a href="{{ url_for('checkout') }}" class="btn btn-primary btn-sm">
+				<a href="{{ url_for('store_checkout_form') }}" class="btn btn-primary btn-sm">
 					Checkout <i class="glyphicon glyphicon-chevron-right"></i>
 				</a>
-				<a href="{{ url_for('index') }}" class="btn btn-link btn-sm pull-right">
+				<a href="{{ url_for('store_index') }}" class="btn btn-link btn-sm pull-right">
 					<i class="glyphicon glyphicon-chevron-left"></i> Continue Shopping
 				</a>
 			</div>
