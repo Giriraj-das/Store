@@ -36,13 +36,6 @@ def handle_cart():
     return products, cart_summary
 
 
-@store_ns.route('/')
-class Index(Resource):
-    def get(self):
-        products = db.session.query(Product).all()
-        return make_response(render_template('index.html', products=products), 200)
-
-
 @store_ns.route('/product/<pid>')
 class ProductItem(Resource):
     def get(self, pid):
@@ -67,7 +60,7 @@ class QuickAdd(Resource):
 
         session['cart'].append({'id': qid, 'quantity': 1})
         session.modified = True
-        return redirect(url_for('store_index'))
+        return redirect(url_for('index'))
 
 
 @store_ns.route('/add-to-cart')
@@ -84,12 +77,12 @@ class AddInCart(Resource):
                 if form.id.data == item['id']:
                     item['quantity'] += form.quantity.data
                     session.modified = True
-                    return redirect(url_for('store_index'))
+                    return redirect(url_for('index'))
 
             session['cart'].append({'id': form.id.data, 'quantity': form.quantity.data})
             session.modified = True
 
-        return redirect(url_for('store_index'))
+        return redirect(url_for('index'))
 
 
 @store_ns.route('/cart')
@@ -141,6 +134,6 @@ class CheckoutForm(Resource):
         session['cart'] = []
         session.modified = True
 
-        return redirect(url_for('store_index'))
+        return redirect(url_for('index'))
 
 
