@@ -12,16 +12,18 @@ from views.forms import photos
 from views.store import store_ns
 
 
-def create_app(config: Config) -> Flask:
+def create_app():
     """Create main object app"""
     app = Flask(__name__)
-    app.config.from_object(config)
+    app.config.from_object(Config())
     app.app_context().push()
 
     @app.route('/')
     def index():
         products = db.session.query(Product).all()
-        return render_template('index.html', products=products), 200
+        groups_products = [products[x:4+x] for x in range(0, len(products), 4)]
+
+        return render_template('index.html', groups_products=groups_products), 200
 
     api = Api(app=app, title='Store', doc='/docs')
     api.add_namespace(admin_ns)
@@ -45,5 +47,5 @@ def create_app(config: Config) -> Flask:
 
 
 if __name__ == '__main__':
-    application = create_app(Config())
+    application = create_app()
     application.run()
