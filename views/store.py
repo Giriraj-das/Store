@@ -15,7 +15,7 @@ def handle_cart():
     cart_summary = {'grand_total': 0, 'grand_total_plus_shipping': 0, 'taxes': 0}
     ind = 0
 
-    for item in session['cart']:
+    for item in session.get('cart', []):
         product_ = db.session.query(Product).filter_by(id=item['id']).first()
         quantity = int(item['quantity'])
 
