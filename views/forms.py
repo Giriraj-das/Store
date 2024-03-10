@@ -1,9 +1,10 @@
-from flask_uploads import IMAGES, UploadSet
+from flask_uploads import UploadSet
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, IntegerField, TextAreaField, SelectField, HiddenField
 
-photos = UploadSet('photos', IMAGES)
+IMAGE_EXTENSIONS = ('jpg', 'jpe', 'jpeg', 'png', 'gif', 'svg', 'bmp', 'webp')
+photos = UploadSet('photos', IMAGE_EXTENSIONS)
 
 
 class AddProduct(FlaskForm):
@@ -11,7 +12,7 @@ class AddProduct(FlaskForm):
     price = IntegerField('Price')
     stock = IntegerField('Stock')
     description = TextAreaField('Description')
-    image = FileField('Image', validators=[FileAllowed(IMAGES, 'Only images are accepted.')])
+    image = FileField('Image', validators=[FileAllowed(IMAGE_EXTENSIONS, 'Only images are accepted.')])
 
 
 class AddToCart(FlaskForm):
