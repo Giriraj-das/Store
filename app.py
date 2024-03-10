@@ -25,6 +25,10 @@ def create_app():
 
         return render_template('index.html', groups_products=groups_products), 200
 
+    @app.route('/sign-in')
+    def sign_in():
+        return render_template('sign-in.html'), 200
+
     api = Api(app=app, title='Store', doc='/docs')
     api.add_namespace(admin_ns)
     api.add_namespace(store_ns)
